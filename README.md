@@ -3,11 +3,18 @@
 AWS Amplify does not support the beloved [Git Large File Storage (LFS)](https://git-lfs.com/) out of the box.
 This custom Docker image adds Git LFS to the `Amazon Linux:2023` image used by Amplify, with minimal modifications to the Dockerfile used by AWS themselves.
 
+The magic line:
+
+```dockerfile
+RUN curl https://packagecloud.io/install/repositories/github/git-lfs/script.rpm.sh | bash \
+    && yum install --assumeyes git-lfs
+```
+
 To use this image:
 
 1. navigate to **Build settings** > **Build image settings**
 2. click **Edit**
-3. select `Build image` in the **Build image** dropdown menu and enter the reference `xujustinj/amazonlinux-amplify-git-lfs:2023`
+3. select `Build image` in the **Build image** dropdown menu and enter the reference [`xujustinj/amazonlinux-amplify-git-lfs:2023`](https://hub.docker.com/r/xujustinj/amazonlinux-amplify-git-lfs)
 4. click **Save**
 5. redeploy
 
